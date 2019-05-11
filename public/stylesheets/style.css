@@ -9,11 +9,63 @@ html {
 
 .bg {
   /* The image used */
-  /*background-image: url('/images/education.jpg');*/
+  background-image: url('/images/education.jpg');
   background-color: rgba(165, 153, 153, 0.3);
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+}
+
+
+/* navbar */
+.navbar .navbar-nav>li>a {
+  color: black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.2rem
+}
+
+.navbar .navbar-brand {
+  color: rgb(252, 230, 230);
+  font-size: 1.5rem
+}
+
+.navbar .navbar-nav>li>a:hover {
+  color: rgb(252, 230, 230);
+}
+
+.navbar .navbar-brand:hover {
+  color: rgb(181, 193, 250);
+}
+
+#arrow {
+  width: auto;
+  height: auto;
+  display: flex;
+  position: absolute;
+  margin-left: -50px;
+  bottom: 20px;
+  left: 50%;
+}
+
+a:hover #arrow {
+  color: rgb(252, 230, 230);
+}
+
+#quote {
+  width: auto;
+  height: auto;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
+
+#quote pre {
+  font-family: Source Serif Variable;
+  font-size: 2em;
+  color: aliceblue;
 }
