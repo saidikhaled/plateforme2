@@ -3,6 +3,7 @@ const router = express.Router();
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 const saltRounds = 10;
+import alert from 'alert-node';
 
 // get login page
 router.get('/login', function (req, res, next) {
@@ -11,6 +12,7 @@ router.get('/login', function (req, res, next) {
 
 // handle login
 router.post('/login', passport.authenticate('local', { failureRedirect: 'login' }), function (req, res) {
+	req.flash('welcomeMsg', 'Your name was updated');
 	res.redirect('profile');
 });
 
@@ -24,8 +26,8 @@ router.get('/logout', function (req, res, next) {
 });
 
 // get profile page
-router.get('/profile', authenticationMiddleware(), function (req, res, next) {
-	res.render('profile');
+router.get('/profile', ensureAuthenticated(), function (req, res, next) {
+	res.render('profile', { expressFlash: req.flash('welcomeMsg') });
 });
 
 // get signup page
@@ -42,7 +44,6 @@ router.post('/signup', function (req, res, next) {
 	const un = req.body.userName;
 	const email = req.body.email;
 	const pw = req.body.password;
-	const pw2 = req.body.password2;
 
 	req.checkBody('userName', 'username can not be empty').notEmpty();
 	req.checkBody('email', 'email is not valid').isEmail().notEmpty();
@@ -58,7 +59,11 @@ router.post('/signup', function (req, res, next) {
 		console.log(errors);
 		//	return res.status(422).json({ errors: errors });
 		return res.status(422).render('signup', {
-			errors : errors
+			errors : errors,
+			fn,
+			ln,
+			un,
+			email
 		});
 	} else {
 		bcrypt.hash(pw, saltRounds, function (err, hash) {
@@ -93,10 +98,8 @@ passport.deserializeUser(function (user_id, done) {
 });
 
 // ensuring authentification
-function authenticationMiddleware () {
+function ensureAuthenticated () {
 	return (req, res, next) => {
-		console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
-
 		if (req.isAuthenticated()) return next();
 
 		res.redirect('login');

@@ -1,0 +1,54 @@
+<% include ./partials/header %>
+
+
+<section class="container mt-lg-5 bg-white p-3">
+    <div class="d-flex bg-white ">
+        <div class="mr-auto p-2">
+            <h1>Questions</h1>
+        </div>
+        <div class="p-2 align-self-center">
+            <button class="btn btn-primary btn-lg">
+                <a href="/forum/addQ">Ask Question</a>
+            </button>
+        </div>
+    </div>
+    <div class="d-flex bg-white">
+        <div class="btn-group ml-auto" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary">Interessant</button>
+            <button type="button" class="btn btn-secondary">Inter-établissement</button>
+            <button type="button" class="btn btn-secondary">Semaine</button>
+            <button type="button" class="btn btn-secondary">Mois</button>
+        </div>
+    </div>
+    <form action="/forum/getOne">
+        <table class="table table-striped bg-light mt-5">
+            <tbody>
+                <% if(typeof results != 'undefined' ) { %>
+                <% results.forEach(function (result,i) { %>
+                <tr>
+                    <td>
+
+
+                        <button class="btn ">
+                            <h3> <a href="/forum/getOne/<%- result.forum_id %>"><%- result.titre %></a></h3>
+                        </button>
+
+                        <div class="d-flex">
+                            <div class="mr-auto p-2">
+                                <% tags[i].forEach(function (tag) { %>
+                                <span class="bg-secondary text-light m-2 p-1"><%- tag %></span>
+                                <% }); %>          
+                            </div>
+                            <div class="p-2">
+                                <p>created at: <%- result.created_at%></p>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                <% }); %>
+                <% } %>
+            </tbody>
+        </table>
+    </form>
+</section>

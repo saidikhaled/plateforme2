@@ -1,71 +1,104 @@
 body,
 html {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  /*overflow: hidden;*/
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	/*overflow: hidden;*/
 }
 
 .bg {
-  /* The image used */
-  background-image: url('/images/education.jpg');
-  background-color: rgba(165, 153, 153, 0.3);
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+	/* The image used */
+	background-image: url('/images/education.jpg');
+	background-color: rgba(165, 153, 153, 0.3);
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
 }
 
-
 /* navbar */
-.navbar .navbar-nav>li>a {
-  color: black;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 1.2rem
+.navbar .navbar-nav > li > a {
+	color: black;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-size: 1.2rem;
 }
 
 .navbar .navbar-brand {
-  color: rgb(252, 230, 230);
-  font-size: 1.5rem
+	color: rgb(252, 230, 230);
+	font-size: 1.5rem;
 }
 
-.navbar .navbar-nav>li>a:hover {
-  color: rgb(252, 230, 230);
+.navbar .navbar-text {
+	color: rgb(252, 230, 230);
+	font-size: 1.2rem;
+}
+
+.navbar .navbar-nav > li > a:hover {
+	color: rgb(252, 230, 230);
 }
 
 .navbar .navbar-brand:hover {
-  color: rgb(181, 193, 250);
+	color: rgb(181, 193, 250);
 }
 
+#headDiv {
+	width: auto;
+	height: 300px;
+	background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
+#headColor {
+	background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
 #arrow {
-  width: auto;
-  height: auto;
-  display: flex;
-  position: absolute;
-  margin-left: -50px;
-  bottom: 20px;
-  left: 50%;
+	width: auto;
+	height: auto;
+	display: flex;
+	position: absolute;
+	margin-left: -50px;
+	bottom: 20px;
+	left: 50%;
 }
-
+a {
+	color: black;
+	text-decoration: none;
+}
+a:hover {
+	color: white;
+	text-decoration: none;
+}
+h3 > a:hover {
+	color: rgb(28, 131, 134);
+	text-decoration: none;
+}
 a:hover #arrow {
-  color: rgb(252, 230, 230);
+	color: rgb(252, 230, 230);
 }
-
 #quote {
-  width: auto;
-  height: auto;
-  display: flex;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0 auto;
+	display: flex;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin: 0 auto;
+}
+#quote pre {
+	font-family: Source Serif Variable;
+	font-size: 2em;
+	color: aliceblue;
+}
+#comment {
+	width: 800px;
+}
+#show_comments {
+	width: inherit;
+	height: auto;
+	display: block;
+	border-style: outset;
+	border-width: 1px;
 }
 
-#quote pre {
-  font-family: Source Serif Variable;
-  font-size: 2em;
-  color: aliceblue;
+/* brainstorming /*/
+#stormsList {
 }

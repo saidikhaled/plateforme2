@@ -1,1 +1,8 @@
+<% include ./partials/headDiv %>
 <h1>profile page</h1>
+
+<% if ( expressFlash.length > 0 ) { %>
+    <p>Message: <%= expressFlash %> </p>
+<% } %>
+
+

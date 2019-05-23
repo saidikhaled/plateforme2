@@ -1,0 +1,41 @@
+<% include ./partials/header %>
+<section class="container bg-light p-3 ">
+    <div id='question_details' class="mb-2">
+        <h2> <%- question.titre %> </h2>
+        <div class="container">
+            
+            <p class="text-justify"><%- question.description %> </p>
+        </div>
+        <div>
+            <% tags.forEach(function (tag) { %>
+            <span class="bg-secondary text-light m-2 p-1"><%- tag %></span>
+            <% }); %>
+        </div>
+    </div>
+    <% if(comments.length > 0) {%>
+        <% comments.forEach(function (comment) { %>
+
+        <div id="show_comments" class="bg-light mb-1">
+            <p  class="p-2 align-content-center "><%- comment %></p>
+        </div>
+        <% }); %>
+    <% } %>
+    <div id="add_comment" class="container d-flex bg-light mt-3">
+        <div class="p-2 ">
+            <h4 class="text-center "><%- username %></h4>
+        </div>
+        <div class="  flex-grow-1">
+            <form action="/forum/addCom" method="POST" >
+                    <textarea name="comment" id="comment" placeholder="add your comment here" rows="2"></textarea>
+                    <button type="submit" class="btn btn-secondary  ml-5" id="demo"
+                            onclick="myFunction()">Submit</button>  
+            </form>
+        </div>  
+    </div>
+</section>
+
+<script>
+    function myFunction() {
+        document.getElementById("demo").style.color = "red";
+    }
+</script>

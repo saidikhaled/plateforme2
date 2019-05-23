@@ -9,11 +9,16 @@ import expressValidator from 'express-validator';
 import session from 'express-session';
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
+import flash from 'connect-flash';
+
 const LocalStrategy = require('passport-local').Strategy;
 const MySQLStore = require('express-mysql-session')(session);
 
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
+import forumRouter from './routes/forum';
+import brainstormingRouter from './routes/brainstorming';
+import sharefileRouter from './routes/sharefile';
 
 const app = express();
 
@@ -21,6 +26,7 @@ require('dotenv').config();
 
 //static folders
 app.use(express.static(path.join(__dirname, '../public')));
+app.use('/jquery', express.static(path.join(__dirname, '../node_modules/jquery/dist'))); // redirect bootstrap JS
 app.use('/js', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/js'))); // redirect bootstrap JS
 app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/css'))); // redirect CSS bootstrap
 app.use('/fontawesome', express.static(path.join(__dirname, '../node_modules/@fortawesome/fontawesome-free'))); // redirect CSS bootstrap
@@ -29,6 +35,7 @@ app.use('/fontawesome', express.static(path.join(__dirname, '../node_modules/@fo
 app.use(expressLayouts);
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
+app.set('layout', 'layouts/mainLayout');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -55,6 +62,7 @@ app.use(
 // intialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use((req, res, next) => {
 	res.locals.isAuthenticated = req.isAuthenticated();
@@ -62,6 +70,9 @@ app.use((req, res, next) => {
 });
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/forum', forumRouter);
+app.use('/brainstorming', brainstormingRouter);
+app.use('/sharefile', sharefileRouter);
 
 // passport local
 passport.use(

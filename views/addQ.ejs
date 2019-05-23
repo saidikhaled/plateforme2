@@ -1,0 +1,38 @@
+<% include ./partials/headDiv %>
+
+<section class="container">
+    <div class="row mt-lg-5">
+        <div class="col-md-8 m-auto">
+            <div class="card card-body">
+                <h1 class="text-center mb-3">Ask Question</h1>
+                <% include ./partials/messages %>
+                <form action="/forum/addQ" method="POST">
+                    <div class="form-group">
+                        <label for="categorie">Catégorie</label>
+                        <input type="text" class="form-control" name="categorie" id="categorie"
+                            placeholder="example : éducation"
+                            value="<%= typeof categorie != 'undefined' ? categorie : '' %>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="titre">Titre</label>
+                        <input type="text" class="form-control" name="titre" id="titre"
+                            placeholder="example : un enfant bruiant qui ne cesse de semer la pagaille en classe  "
+                            value="<%= typeof titre != 'undefined' ? titre : '' %>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <input type="text" class="form-control" name="tags" id="tags"
+                            placeholder="example : education classe "
+                            value="<%= typeof tags != 'undefined' ? tags : '' %>" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
