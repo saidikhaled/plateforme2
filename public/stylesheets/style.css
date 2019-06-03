@@ -85,11 +85,13 @@ a:hover #arrow {
 }
 #quote pre {
 	font-family: Source Serif Variable;
-	font-size: 2em;
+	font-size: 4vw;
 	color: aliceblue;
 }
 #comment {
-	width: 800px;
+	width: 900px;
+	border-radius: 10px;
+	height: 40px;
 }
 #show_comments {
 	width: inherit;
@@ -97,8 +99,25 @@ a:hover #arrow {
 	display: block;
 	border-style: outset;
 	border-width: 1px;
+	border-radius: 10px;
 }
 
 /* brainstorming /*/
-#stormsList {
+#stormBoard {
+	width: 500px;
+	height: 500px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: rgb(63, 40, 12);
+	background: rgb(182, 174, 174);
+}
+
+#stormIdea {
+	width: 50px;
+	height: 50px;
+
+	border-style: solid;
+	border-width: 5px;
+	border-color: rgb(63, 40, 12);
+	background: rgb(146, 45, 45);
 }

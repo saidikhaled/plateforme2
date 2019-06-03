@@ -11,9 +11,11 @@ router.get('/login', function (req, res, next) {
 });
 
 // handle login
-router.post('/login', passport.authenticate('local', { failureRedirect: 'login' }), function (req, res) {
-	req.flash('welcomeMsg', 'Your name was updated');
-	res.redirect('profile');
+router.post('/login', passport.authenticate('local', { failureRedirect: 'login', failureFlash: true }), function (
+	req,
+	res
+) {
+	res.redirect('/');
 });
 
 // handle logout

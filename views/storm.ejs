@@ -1,31 +1,25 @@
-<% include ./partials/headDiv %>
-<section>
-    <div class="container p-2 mt-lg-5 d-flex">
-        <div class="card card-body">
-                <h1 class="text-center mb-3">Storm</h1>
-                <% include ./partials/messages %>
-                <form action="/brainstorming/addStorm" method="POST">
-                  
-                    <div class="form-group">
-                        <label for="name">Storm name</label>
-                        <input type="text" class="form-control" name="name" id="name"
-                            placeholder="Make it interesting, fun and informative "
-                            value="" />
-                    </div>
-                    <div class="form-group">
-                            <label for="type">Storm type</label>
-                            <input type="text" class="form-control" name="type" id="type"
-                                placeholder="school / open"
-                                value="" />
-                        </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea class="form-control" name="description" id="description" rows="3"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">submit</button>
+<section class='container'>
+    <h1>Storm page <%- results[0].id%></h1>
+<div id='stormBoard' class="d-flex flex-column" >
+<div class="minibox" id="stormIdea"></div>
+<div class="minibox" id="stormIdea"></div>
+<div class="minibox" id="stormIdea"></div>
+</div>
 
-                </form>
-            </div>
-    </div>
 </section>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+    $('#stormBoard').on('click','.minibox',function(){
+        $('.minibox').click(function() { $(this).remove(); });
+        
+    })
+    $('#stormBoard').on('dblclick',function(){
+        $('#stormBoard').append('<div id="stormIdea" class="minibox"></div>')
+    })
+})
+
+
+
+</script>

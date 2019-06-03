@@ -1,4 +1,6 @@
 import express from 'express';
+import { create } from 'domain';
+import { createDecipher } from 'crypto';
 const router = express.Router();
 const { ensureAuthenticated } = require('../../config/auth');
 
@@ -15,44 +17,42 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 		let tags = Object.values(tagsObj);
 		res.render('FAQ', { results, tags });
+		//res.json({ results, tags });
+		//res.send(JSON.stringify({ results, tags }));
 	});
 });
 
 // get one question
 router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 	const db = require('../../db');
-	req.flash.frm_id = req.params.id;
-	console.log(req.flash.frm_id);
 	// fetch the question
-	db.query('SELECT * FROM forum where forum_id = ?', [ req.params.id ], (error, results, fields) => {
+	db.query('SELECT * FROM forum where id = ?', [ req.params.id ], (error, results, fields) => {
 		if (error) throw error;
-		//console.log(results[0]);
 
 		let tags = results[0].tags.split(' ');
 		let comments = [];
 		let question = results[0];
 		//	const user_id = results[0].user_id;
-
+		let commentUser = [];
 		// fetch comments
 		db.query(
-			'SELECT comment,user_id,created_at FROM commentaires where forum_id = ?',
+			'SELECT comment,user_id,created_at FROM commentaires where id = ?',
 			[ req.params.id ],
 			(error1, results1, fields1) => {
 				if (error1) throw error;
 				// if there is any comments
 				if (results1.length !== 0) {
-					console.log(results1);
-
 					const time = [];
 
-					let commentUser = [];
+					let commentUserIds = [];
 					results1.forEach((result, i) => {
-						console.log(result.comment);
-						commentUser.push(result.user_id);
-						console.log(result.user_id);
+						if (commentUserIds[i] === result.user_id) {
+							console.log('twice');
+						} else {
+							commentUserIds.push(result.user_id);
+						}
 						comments.push(result.comment);
 					});
-					console.log(comments);
 
 					// fetch the user
 					db.query(
@@ -60,15 +60,30 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 						[ req.session.passport.user.user_id ],
 						(error2, results2, fields) => {
 							if (error2) throw error;
-
-							console.log('username : ', results2[0].username);
+							//	console.log('username : ', results2[0].username);
 							let username = results2[0].username;
+							//let commentUser = [];
+							//console.log('length : ' + commentUserIds.length + ' \narray has : ' + commentUserIds);
+							for (let i = 0; i < commentUserIds.length; i++) {
+								db.query(
+									'SELECT username FROM users where id = ?',
+									[ commentUserIds[i] ],
+									(error3, results3, fields) => {
+										if (error3) throw error;
+										console.log('username ' + i + ': ' + results3[0].username);
+										commentUser.push(results3[0].username);
+									}
+								);
+							}
+							console.log('array commentUser : ' + commentUser);
 							res.render('question', {
 								question,
 								tags,
 								comments,
 								time,
-								username
+								username,
+								commentUser,
+								results1
 							});
 						}
 					);
@@ -88,7 +103,8 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 								question,
 								tags,
 								username,
-								comments
+								comments,
+								results1
 							});
 						}
 					);
@@ -99,13 +115,11 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 });
 
 // add a question to database
-router.post('/addCom', function (req, res, next) {
+router.post('/addCom/:id', function (req, res, next) {
 	const db = require('../../db');
 	let comment = req.body.comment;
 	let userId = req.session.passport.user.user_id;
-	const forumId = req.flash.frm_id;
-	//console.log(comment);
-	//console.log(forumId);
+	let forumId = req.params.id;
 
 	req.checkBody('comment', "you can't submit an empty comment ").notEmpty();
 	const errors = req.validationErrors();
@@ -121,7 +135,14 @@ router.post('/addCom', function (req, res, next) {
 			[ userId, comment, forumId ],
 			(error, results, fields) => {
 				if (error) throw error;
-				res.redirect('/forum');
+				//res.redirect('/forum');
+				db.query('SELECT comment FROM commentaires ORDER BY id DESC LIMIT 1', (error, results, fields) => {
+					let lastComment = results[0].comment;
+
+					//res.render('comment', { lastComment });
+					return res.send({ lastComment });
+					//res.end();
+				});
 			}
 		);
 	}

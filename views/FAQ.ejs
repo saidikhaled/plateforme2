@@ -30,7 +30,7 @@
 
 
                         <button class="btn ">
-                            <h3> <a href="/forum/getOne/<%- result.forum_id %>"><%- result.titre %></a></h3>
+                            <h3> <a href="/forum/getOne/<%- result.id %>"><%- result.titre %></a></h3>
                         </button>
 
                         <div class="d-flex">
@@ -40,7 +40,7 @@
                                 <% }); %>          
                             </div>
                             <div class="p-2">
-                                <p>created at: <%- result.created_at%></p>
+                                <p>created at: <%- result.created_at %></p>
                             </div>
                         </div>
 
@@ -52,3 +52,18 @@
         </table>
     </form>
 </section>
+
+
+
+<script>
+  
+       
+    $.ajax({
+        type:'GET',
+        url : '/forum/',
+        success :(results) =>{
+           
+            console.log('ajax works');
+    } })
+    
+    </script>

@@ -1,10 +1,12 @@
+<script src="/javascript/addComment.js"> </script>
+
 <% include ./partials/header %>
-<section class="container bg-light p-3 ">
-    <div id='question_details' class="mb-2">
+<section class="container  p-3  ">
+    <div id='question_details' class="mb-5">
         <h2> <%- question.titre %> </h2>
         <div class="container">
             
-            <p class="text-justify"><%- question.description %> </p>
+            <p class="text-justify "><%- question.description %> </p>
         </div>
         <div>
             <% tags.forEach(function (tag) { %>
@@ -12,30 +14,28 @@
             <% }); %>
         </div>
     </div>
-    <% if(comments.length > 0) {%>
-        <% comments.forEach(function (comment) { %>
+    <div id="comments">
+    <% if(results1.length > 0) {%>
+        <% results1.forEach(function (result,i) { %>
 
-        <div id="show_comments" class="bg-light mb-1">
-            <p  class="p-2 align-content-center "><%- comment %></p>
+        <div id="show_comments" class="bg-light pl-3 mb-3">
+            <h3 class="text-center mr-2"><%- commentUser[i] %></h3>
+            <p  class="p-2 align-content-center "><%- result.comment %></p>
         </div>
         <% }); %>
     <% } %>
-    <div id="add_comment" class="container d-flex bg-light mt-3">
-        <div class="p-2 ">
-            <h4 class="text-center "><%- username %></h4>
-        </div>
-        <div class="  flex-grow-1">
-            <form action="/forum/addCom" method="POST" >
-                    <textarea name="comment" id="comment" placeholder="add your comment here" rows="2"></textarea>
-                    <button type="submit" class="btn btn-secondary  ml-5" id="demo"
-                            onclick="myFunction()">Submit</button>  
+    </div>
+    
+    <!-- <div class="p-2 ">
+        <h4 class="text-center mr-2"><%- username %></h4>
+    </div> -->
+    <div id="add_comment" class="container p-2  mt-1 ">
+        
+            <form id='comment_form' class="pl-2" action="/forum/addCom/" method="POST" data-forumid="<%= question.id %>" >
+                    <input name="comment" id="comment" placeholder="  write a comment here ..." ></input>
+                    <button type="submit" class="btn btn-secondary " id="add_comment_button" hidden>Submit</button>  
             </form>
-        </div>  
+         
     </div>
 </section>
 
-<script>
-    function myFunction() {
-        document.getElementById("demo").style.color = "red";
-    }
-</script>

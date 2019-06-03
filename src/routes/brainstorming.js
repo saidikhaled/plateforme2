@@ -2,15 +2,24 @@ import express from 'express';
 const router = express.Router();
 const { ensureAuthenticated } = require('../../config/auth');
 
-router.get('/', (req, res) => {
-	res.render('brainstorming');
+router.get('/', ensureAuthenticated, (req, res) => {
+	const db = require('../../db');
+
+	db.query('SELECT * FROM storm', (error, results, fields) => {
+		if (error) throw error;
+		res.render('brainstorming', { results });
+	});
 });
 
-router.get('/addStorm', (req, res) => {
-	res.render('storm');
+router.get('/addStorm', ensureAuthenticated, (req, res) => {
+	res.render('addS');
 });
 
-router.post('/addStorm', (req, res) => {
+router.get('/storm', ensureAuthenticated, (req, res) => {
+	res.render('addS');
+});
+
+router.post('/addStorm', ensureAuthenticated, (req, res) => {
 	const db = require('../../db');
 	let name = req.body.name;
 	let description = req.body.description;
@@ -24,7 +33,7 @@ router.post('/addStorm', (req, res) => {
 	if (errors) {
 		console.log('validation errors', errors);
 
-		return res.status(422).render('storm', {
+		return res.status(422).render('addS', {
 			errors
 		});
 	} else {
@@ -39,4 +48,14 @@ router.post('/addStorm', (req, res) => {
 	}
 });
 
+// get one storm
+router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
+	const db = require('../../db');
+	console.log('i get to here');
+	db.query('SELECT *  FROM storm where id= ?', [ req.params.id ], (error, results, fields) => {
+		if (error) throw error;
+		console.log(results);
+		res.render('storm', { results });
+	});
+});
 export default router;

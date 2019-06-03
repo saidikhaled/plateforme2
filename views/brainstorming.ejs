@@ -1,13 +1,36 @@
 <% include ./partials/header %>
 <section>
-    <div class="container-fluid bg-secondary d-flex">
-        <div id="stormsList" class="mr-auto p-2 bg-light">
+    <div class="container-fluid d-flex">
+        <div id="stormsList" class="mr-auto p-2">
             <h1>Storms List</h1>
         </div>
-        <div class="p-2 bg-info ">
+        <div class="p-2 ">
             <button class="btn btn-primary btn-lg  ">
                 <a href="/brainstorming/addStorm">Add Storm</a>
             </button>
         </div>
     </div>
+    <div class="bg-info">
+    <form action="/brainstorming/getOne">
+        <table class="table table-striped bg-light mt-5">
+            <tbody>
+                <% if(typeof results != 'undefined' ) { %>
+                <% results.forEach(function (result,i) { %>
+                <tr>
+                    <td>
+                    <button class="btn">
+                        <h3> <a href="/brainstorming/getOne/<%- result.id %>"><%- result.nom %></a></h3>
+                    </button>
+
+                    <div class="p-2 ml-auto">
+                        <p>created at: <%- result.date_debut%></p>
+                    </div>
+                    </td>
+                </tr>
+                <% }); %>
+                <% } %>
+            </tbody>
+        </table>
+    </form>
+</div>
 </section>
