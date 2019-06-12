@@ -1,0 +1,27 @@
+<% include ./partials/header %>
+<section class="container">
+
+    <a href="/files/upload"><button class="m-3 p-2 btn btn-info btn-block">Share a File</button></a>
+    <div class="d-flex  flex-lg-row " >
+        
+            <% if(typeof Files != 'undefined' ) { %>
+                <% Files.idsFiles.forEach(function (id,i) { %>
+                    <div>
+                        <a href="/files/download/<%- id %>"><div class="filediv p-2 m-2 text-center " >F</div></a>
+                        <p class="text-center"><%= Files.namesFiles[i] %> </p>
+                    </div> 
+                <% }); %>
+            <% } %>
+            <% if(typeof Imgs != 'undefined' ) { %>
+                <% Imgs.idsImgs.forEach(function (id,i) { %>
+                <div >
+                    <div id="imgdiv" class="m-2 ">
+                        <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
+                    </div>
+                    <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
+                </div>
+                <% }); %>
+            <% } %>
+        
+    </div>
+</section>

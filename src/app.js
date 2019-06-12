@@ -18,7 +18,7 @@ import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import forumRouter from './routes/forum';
 import brainstormingRouter from './routes/brainstorming';
-import sharefileRouter from './routes/sharefile';
+import filesRouter from './routes/files';
 
 const app = express();
 
@@ -72,7 +72,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/forum', forumRouter);
 app.use('/brainstorming', brainstormingRouter);
-app.use('/sharefile', sharefileRouter);
+app.use('/files', filesRouter);
 
 // passport local
 passport.use(
