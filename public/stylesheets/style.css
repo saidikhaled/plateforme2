@@ -121,3 +121,21 @@ a:hover #arrow {
 	border-color: rgb(63, 40, 12);
 	background: rgb(146, 45, 45);
 }
+
+.fileimg {
+	height: auto;
+	width: 180px;
+	box-shadow: 12px 10px 18px -6px rgba(0, 0, 0, 0.61);
+}
+#imgdiv {
+	height: 180px;
+	width: 180px;
+}
+
+.filediv {
+	height: 180px;
+	width: 180px;
+	background-color: #008793;
+	font-size: 7em;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
