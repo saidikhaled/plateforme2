@@ -14,12 +14,21 @@
             <% } %>
             <% if(typeof Imgs != 'undefined' ) { %>
                 <% Imgs.idsImgs.forEach(function (id,i) { %>
+<<<<<<< HEAD
                     <div>
                         <div id="imgdiv" class="m-2 ">
                             <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
                         </div>
                         <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
                     </div>
+=======
+                <div >
+                    <div id="imgdiv" class="m-2 ">
+                        <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
+                    </div>
+                    <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
+                </div>
+>>>>>>> 8d867693f24b731bfea04eb110af334a528d9af5
                 <% }); %>
             <% } %>
         
