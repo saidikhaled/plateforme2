@@ -1,8 +1,8 @@
 <% include ./partials/header %>
 <section class="container">
 
-    <a href="/files/upload"><button class="m-3 p-2 btn btn-info btn-block">Share a File</button></a>
-    <div class="d-flex  flex-lg-row " >
+    <a href="/files/upload"><button class="m-3 p-2 btn btnClr btn-block">Share a File</button></a>
+    <div class="d-flex  flex-lg-row flex-wrap " >
         
             <% if(typeof Files != 'undefined' ) { %>
                 <% Files.idsFiles.forEach(function (id,i) { %>

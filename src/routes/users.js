@@ -3,7 +3,6 @@ const router = express.Router();
 import passport from 'passport';
 import bcrypt from 'bcryptjs';
 const saltRounds = 10;
-import alert from 'alert-node';
 
 // get login page
 router.get('/login', function (req, res, next) {
@@ -15,7 +14,7 @@ router.post('/login', passport.authenticate('local', { failureRedirect: 'login',
 	req,
 	res
 ) {
-	res.redirect('/');
+	res.redirect('/home');
 });
 
 // handle logout
@@ -81,7 +80,7 @@ router.post('/signup', function (req, res, next) {
 
 						const user_id = results[0];
 						req.login(user_id, (err) => {
-							res.redirect('/');
+							res.redirect('/home');
 						});
 					});
 				}

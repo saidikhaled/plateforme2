@@ -2,11 +2,11 @@
 
 <% include ./partials/header %>
 <section class="container  p-3  ">
-    <div id='question_details' class="mb-5">
+    <div id='question_details' class="m-5">
         <h2> <%- question.titre %> </h2>
         <div class="container">
             
-            <p class="text-justify "><%- question.description %> </p>
+            <p class="text-justify p-3 m-4"><%- question.description %> </p>
         </div>
         <div>
             <% tags.forEach(function (tag) { %>
@@ -15,20 +15,20 @@
         </div>
     </div>
     <div id="comments">
-    <% if(results1.length > 0) {%>
-        <% results1.forEach(function (result,i) { %>
-
-        <div id="show_comments" class="bg-light pl-3 mb-3">
-            <h3 class="text-center mr-2"><%- commentUser[i] %></h3>
-            <p  class="p-2 align-content-center "><%- result.comment %></p>
+    <% if(commentResults.length > 0) {%>
+        <% commentResults.forEach(function (result,i) { %>
+        <div id="user_comment">
+            <div id="comment_username">
+                <h4 >user name <%= commentUser[i] %></h4>
+            </div>   
+            <div id="show_comments" >
+                <p><%- result.comment %></p>
+            </div>
         </div>
         <% }); %>
     <% } %>
     </div>
     
-    <!-- <div class="p-2 ">
-        <h4 class="text-center mr-2"><%- username %></h4>
-    </div> -->
     <div id="add_comment" class="container p-2  mt-1 ">
         
             <form id='comment_form' class="pl-2" action="/forum/addCom/" method="POST" data-forumid="<%= question.id %>" >

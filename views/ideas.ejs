@@ -1,0 +1,86 @@
+<% include ./partials/header %>
+<section class="container-fluid p-5 ">
+        <div class="d-flex">
+            <div id="stormsList" class="mr-auto p-2">
+                <h1>Ideas</h1>
+            </div>
+            <div class="p-2 ">
+                <a href="/ideas/addIdea">
+                    <button class="btn btnClr btn-lg  ">
+                    Add an Idea
+                    </button>
+                </a>
+            </div>
+        </div>
+    
+        <form action="/ideas/getCategory">
+         <div class="storm_container flex-wrap ">
+                <div>
+                    <a href="/ideas/getCategory/1">
+                    <div class="box">
+                        <div class="title"><p>School Activities</p></div>
+                        <div class="content">
+                                <h3>Description</h3>
+                                <p>This category is about the Activities that can be done in between curriculum designed for the students, like math quizzes, spelling games etc ...</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/ideas/getCategory/2">
+                    <div class="box">
+                        <div class="title"><p>Extra-Curricular Activities</p></div>
+                        <div class="content">
+                                <h3>Description</h3>
+                                <p>This category is about the Activities that can be done outside the school time that mustbe part of a coherent whole alongside the school program, these activities has as its goal the total development of the student.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/ideas/getCategory/3">
+                    <div class="box">
+                        <div class="title"><p>Events</p></div>
+                        <div class="content">
+                                <h3>Description</h3>
+                                <p>School events are a great way to develop the sense of teamwork and to revitalize the imagination of the students and give them new perspectives that can change their vision of things.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/ideas/getCategory/4">
+                    <div class="box">
+                        <div class="title"><p>Energizers</p></div>
+                        <div class="content">
+                                <h3>Description</h3>
+                                <p>An Energizer, is a fun and educational game to break the monotony of the courses pace and it boosts the students will to learn.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/ideas/getCategory/5">
+                        <div class="box">
+                            <div class="title"><p>Teaching Methods</p></div>
+                            <div class="content">
+                                <h3>Description</h3>
+                                <p>This category can provide teachers with new ways of teaching that are somehow out of the box and extra-ordinary which can help the students to absorb information more efficiently also more easily sometimes.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a href="/ideas/getCategory/6">
+                    <div class="box">
+                        <div class="title"><p>Other</p></div>
+                        <div class="content">
+                                <h3>Description</h3>
+                                <p>Here you find diffrent types of ideas that doesn't fit in the other categories, which makes this category the most interesting category because it shows the real innovations of the participants of this plateforme.</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div> 
+        </form>    
+    </section>
