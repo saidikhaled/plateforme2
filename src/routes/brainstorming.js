@@ -25,9 +25,9 @@ router.post('/addStorm', ensureAuthenticated, (req, res) => {
 	let description = req.body.description;
 	let type = req.body.type;
 	let userId = req.session.passport.user.user_id;
-	req.checkBody('name', 'please fill the required fields').notEmpty();
-	req.checkBody('type', 'please fill the required fields2').notEmpty();
-	req.checkBody('description', 'please fill the required fields3').notEmpty();
+	req.checkBody('name', 'please fill the name field').notEmpty();
+	req.checkBody('type', 'please fill the type field').notEmpty();
+	req.checkBody('description', 'please fill the description field').notEmpty();
 
 	const errors = req.validationErrors();
 	if (errors) {

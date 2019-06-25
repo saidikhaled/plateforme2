@@ -1,13 +1,22 @@
-<section class='container'>
-    <h1>Storm page <%- results[0].id%></h1>
-<div id='stormBoard' class="d-flex flex-column" >
-<div class="minibox" id="stormIdea"></div>
-<div class="minibox" id="stormIdea"></div>
-<div class="minibox" id="stormIdea"></div>
-</div>
+<% include ./partials/header %> 
+<section class="d-flex d-inline-flex w-100">
+    <div id="sidebar">
+        <h2 class="text-center mt-5 p-2">Description</h2>
+        <p class="text-center p-2"><%- results[0].description%></p>
+        <hr>
+        <p class="text-center p-2">created at : <%- results[0].date_debut%></p>
+    </div>
+        <div class="container-fluid "> 
+        <h1 class="m-5 text-center"><%- results[0].nom%></h1>
+        <div id='board'  >
 
+        </div>
+    </div>
+
+ 
 </section>
 
+<script src="/javascript/post-it.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
     
@@ -16,7 +25,8 @@ $(document).ready(function(){
         
     })
     $('#stormBoard').on('dblclick',function(){
-        $('#stormBoard').append('<div id="stormIdea" class="minibox"></div>')
+    var ideavar = '<div id="stormIdea" class="minibox"> <input type="text" id="storminput" name="storminput"   /> </div>' ;
+        $('#stormBoard').append('<div id="stormIdea" class="minibox"><input type="text" id="idea" name="idea" class="form-control"  /> </div>')
     })
 })
 

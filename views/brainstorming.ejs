@@ -1,36 +1,37 @@
-<% include ./partials/header %>
-<section>
-    <div class="container-fluid d-flex">
+<% include ./partials/header %> 
+<section class="container-fluid p-5">
+    <div class="d-flex">
         <div id="stormsList" class="mr-auto p-2">
-            <h1>Storms List</h1>
+            <h1>Storms</h1>
         </div>
         <div class="p-2 ">
-            <button class="btn btn-primary btn-lg  ">
-                <a href="/brainstorming/addStorm">Add Storm</a>
-            </button>
+            <a href="/brainstorming/addStorm">
+                <button class="btn btnClr btn-lg  ">
+                Add Storm
+                </button>
+            </a>
         </div>
     </div>
-    <div class="bg-info">
-    <form action="/brainstorming/getOne">
-        <table class="table table-striped bg-light mt-5">
-            <tbody>
-                <% if(typeof results != 'undefined' ) { %>
-                <% results.forEach(function (result,i) { %>
-                <tr>
-                    <td>
-                    <button class="btn">
-                        <h3> <a href="/brainstorming/getOne/<%- result.id %>"><%- result.nom %></a></h3>
-                    </button>
 
-                    <div class="p-2 ml-auto">
-                        <p>created at: <%- result.date_debut%></p>
-                    </div>
-                    </td>
-                </tr>
+     <div class="storm_container flex-wrap">
+           <% if(typeof results != 'undefined' ) { %>
+                <% results.forEach(function (result,i) { %>
+                    
+                    <form action="/brainstorming/getOne">
+                        <a href="/brainstorming/getOne/<%- result.id %>">
+                        <div class="box">
+                            <div class="title"><p><%- result.nom %></p></div>
+                            <div class="content">
+                                    <h3></h3>
+                                    <p><%- result.description %></p>
+                            </div>
+                        </div>
+                        </a>
+                    </form>
+                    
                 <% }); %>
-                <% } %>
-            </tbody>
-        </table>
-    </form>
-</div>
+                <% } %> 
+        </div>
+ 
+   
 </section>

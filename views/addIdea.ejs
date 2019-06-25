@@ -1,0 +1,36 @@
+<% include ./partials/header %>
+<section class="container">
+    <div class="container p-2 mt-lg-5 d-flex">
+        <div class="card card-body">
+                <h1 class="text-center mb-3">Idea</h1>
+                <% include ./partials/messages %>
+                <form action="/ideas/addIdea" method="POST">
+                  
+                    <div class="form-group">
+                        <label for="title">Idea Title</label>
+                        <input type="text" class="form-control" name="title" id="title"
+                            placeholder="Make it interesting, fun and informative "
+                            value="<%= typeof title != 'undefined' ? title : '' %>" />
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Category</label>
+                        <select class="browser-default custom-select custom-select-md mb-2" name="selectpicker">
+                            <option value="school">School Activities</option>
+                            <option value="extra-school">Extra-curricular Activities</option>
+                            <option value="events">Events</option>
+                            <option value="games">Energizers</option>
+                            <option value="methods">Teaching Methods</option>
+                            <option value="other">Other</option>
+                          </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">submit</button>
+
+                </form>
+            </div>
+    </div>
+</section>

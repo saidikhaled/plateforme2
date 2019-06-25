@@ -25,27 +25,28 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 // get one question
 router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 	const db = require('../../db');
+
 	// fetch the question
-	db.query('SELECT * FROM forum where id = ?', [ req.params.id ], (error, results, fields) => {
+	db.query('SELECT * FROM forum where id = ?', [ req.params.id ], (error, forumResults, fields) => {
 		if (error) throw error;
 
-		let tags = results[0].tags.split(' ');
+		let tags = forumResults[0].tags.split(' ');
 		let comments = [];
-		let question = results[0];
+		let question = forumResults[0];
 		//	const user_id = results[0].user_id;
 		let commentUser = [];
 		// fetch comments
 		db.query(
-			'SELECT comment,user_id,created_at FROM commentaires where id = ?',
+			'SELECT * FROM commentaires where forum_id = ?',
 			[ req.params.id ],
-			(error1, results1, fields1) => {
+			(error1, commentResults, fields1) => {
 				if (error1) throw error;
 				// if there is any comments
-				if (results1.length !== 0) {
+				if (commentResults.length !== 0) {
 					const time = [];
 
 					let commentUserIds = [];
-					results1.forEach((result, i) => {
+					commentResults.forEach((result, i) => {
 						if (commentUserIds[i] === result.user_id) {
 							console.log('twice');
 						} else {
@@ -58,24 +59,25 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 					db.query(
 						'SELECT username FROM users where id = ?',
 						[ req.session.passport.user.user_id ],
-						(error2, results2, fields) => {
+						(error2, userResults, fields) => {
 							if (error2) throw error;
-							//	console.log('username : ', results2[0].username);
-							let username = results2[0].username;
-							//let commentUser = [];
-							//console.log('length : ' + commentUserIds.length + ' \narray has : ' + commentUserIds);
-							for (let i = 0; i < commentUserIds.length; i++) {
+
+							let username = userResults[0].username;
+
+							commentUserIds.forEach((comment, i) => {
 								db.query(
 									'SELECT username FROM users where id = ?',
-									[ commentUserIds[i] ],
-									(error3, results3, fields) => {
+									[ comment ],
+									(error3, commentUserResults, fields) => {
 										if (error3) throw error;
-										console.log('username ' + i + ': ' + results3[0].username);
-										commentUser.push(results3[0].username);
+
+										//console.log('username ' + i + ': ' + commentUserResults[0].username);
+										commentUser.push(commentUserResults[0].username);
+										console.log('from the array', commentUser);
 									}
 								);
-							}
-							console.log('array commentUser : ' + commentUser);
+							});
+
 							res.render('question', {
 								question,
 								tags,
@@ -83,7 +85,7 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 								time,
 								username,
 								commentUser,
-								results1
+								commentResults
 							});
 						}
 					);
@@ -104,7 +106,7 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 								tags,
 								username,
 								comments,
-								results1
+								commentResults
 							});
 						}
 					);
