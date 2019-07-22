@@ -13,7 +13,7 @@ var _http = _interopRequireDefault(require("http"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var debug = (0, _debug["default"])('your-project-name:server');
+var debug = (0, _debug["default"])('plateforme2:server');
 /**
  * Get port from environment and store in Express.
  */

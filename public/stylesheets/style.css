@@ -287,6 +287,7 @@ a:hover #arrow {
 	height: 17vh;
 	width: 20vw;
 }
+/* sharing files */
 .fileimg {
 	height: auto;
 	width: 180px;
@@ -303,6 +304,10 @@ a:hover #arrow {
 	font-size: 7em;
 	font-family: Georgia, 'Times New Roman', Times, serif;
 }
+.files_category {
+	width: 20%;
+	align-items: center;
+}
 #bottom {
 	height: 100vh;
 }
@@ -315,8 +320,7 @@ a:hover #arrow {
 	box-shadow: -2px 2px 5px #555;
 	margin-bottom: 50px;
 	padding: 5px;
-	align-self: auto;
-	/*	position: relative;*/
+	align-self: auto; /*	position: relative;*/
 }
 #sidebar {
 	width: 20vw;
@@ -428,4 +432,14 @@ a:hover #arrow {
 	margin: 0;
 	padding: 0;
 	color: #fff;
+}
+
+
+.idee_innovante{
+	width:100vh;
+	margin:10px;
+	padding: 10px;
+	border-bottom: solid 2px;
+	box-shadow: -2px 2px 5px #555;
+	background-color:#FFA884;
 }

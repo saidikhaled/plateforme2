@@ -35,6 +35,7 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 		let question = forumResults[0];
 		//	const user_id = results[0].user_id;
 		let commentUser = [];
+
 		// fetch comments
 		db.query(
 			'SELECT * FROM commentaires where forum_id = ?',
@@ -47,45 +48,32 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 
 					let commentUserIds = [];
 					commentResults.forEach((result, i) => {
-						if (commentUserIds[i] === result.user_id) {
-							console.log('twice');
-						} else {
-							commentUserIds.push(result.user_id);
-						}
 						comments.push(result.comment);
 					});
 
 					// fetch the user
 					db.query(
-						'SELECT username FROM users where id = ?',
-						[ req.session.passport.user.user_id ],
-						(error2, userResults, fields) => {
-							if (error2) throw error;
-
-							let username = userResults[0].username;
-
-							commentUserIds.forEach((comment, i) => {
-								db.query(
-									'SELECT username FROM users where id = ?',
-									[ comment ],
-									(error3, commentUserResults, fields) => {
-										if (error3) throw error;
-
-										//console.log('username ' + i + ': ' + commentUserResults[0].username);
-										commentUser.push(commentUserResults[0].username);
-										console.log('from the array', commentUser);
+						'select username,id from users where id IN (select user_id from commentaires where forum_id = ?) ',
+						[ req.params.id ],
+						(error, commentsUsernameResults, fields) => {
+							if (error) throw error;
+							// console.log('first username', commentsUsernameResults[0].username);
+							// console.log('commentsUsernameResults', commentsUsernameResults);
+							// console.log('commentResults', commentResults);
+							commentResults.forEach((comment, i) => {
+								commentsUsernameResults.forEach((user, i) => {
+									if (comment.user_id === user.id) {
+										commentUser.push(commentsUsernameResults[i].username);
 									}
-								);
+								});
 							});
+							console.log(commentUser);
 
 							res.render('question', {
-								question,
 								tags,
-								comments,
-								time,
-								username,
+								question,
 								commentUser,
-								commentResults
+								comments
 							});
 						}
 					);
@@ -104,7 +92,6 @@ router.get('/getOne/:id', ensureAuthenticated, function (req, res, next) {
 							res.render('question', {
 								question,
 								tags,
-								username,
 								comments,
 								commentResults
 							});

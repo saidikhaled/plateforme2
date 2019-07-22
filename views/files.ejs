@@ -1,36 +1,121 @@
 <% include ./partials/header %>
-<section class="container">
+<section class="container-fluid">
 
-    <a href="/files/upload"><button class="m-3 p-2 btn btnClr btn-block">Share a File</button></a>
-    <div class="d-flex  flex-lg-row flex-wrap " >
-        
-            <% if(typeof Files != 'undefined' ) { %>
-                <% Files.idsFiles.forEach(function (id,i) { %>
-                    <div>
-                        <a href="/files/download/<%- id %>"><div class="filediv p-2 m-2 text-center " >F</div></a>
-                        <p class="text-center"><%= Files.namesFiles[i] %> </p>
-                    </div> 
-                <% }); %>
-            <% } %>
-            <% if(typeof Imgs != 'undefined' ) { %>
-                <% Imgs.idsImgs.forEach(function (id,i) { %>
-<<<<<<< HEAD
-                    <div>
-                        <div id="imgdiv" class="m-2 ">
-                            <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
+    <a href="/files/upload"><button class="m-3 p-2 btn btnClr">Share a File</button></a><br>
+    <div class="d-inline-flex m-5">
+        <div class="files_category">
+            <h2>Fichiers de préparation</h2>
+        </div>
+    
+        <div class="d-flex  flex-lg-row flex-wrap" >
+            
+                <% if(typeof Files != 'undefined' ) { %>
+                    <% Files.idsFiles.forEach(function (id,i) { %>
+                        <div>
+                            <a href="/files/download/<%- id %>"><div class="filediv p-2 m-2 text-center " >F</div></a>
+                            <p class="text-center"><%= Files.namesFiles[i] %> </p>
+                        </div> 
+                    <% }); %>
+                <% } %>
+                <% if(typeof Imgs != 'undefined' ) { %>
+                    <% Imgs.idsImgs.forEach(function (id,i) { %>
+
+                        <div>
+                            <div id="imgdiv" class="m-2 ">
+                                <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
+                            </div>
+                            <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
                         </div>
-                        <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
-                    </div>
-=======
-                <div >
-                    <div id="imgdiv" class="m-2 ">
-                        <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
-                    </div>
-                    <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
-                </div>
->>>>>>> 8d867693f24b731bfea04eb110af334a528d9af5
-                <% }); %>
-            <% } %>
-        
+                    <% }); %>
+                <% } %>
+            
+        </div>
+    </div>
+    <div class="d-inline-flex m-5">
+        <div class="files_category">
+            <h2>Compositions</h2>
+        </div>
+    
+        <div class="d-flex  flex-lg-row flex-wrap " >
+            
+                <% if(typeof Files != 'undefined' ) { %>
+                    <% Files.idsFiles.forEach(function (id,i) { %>
+                        <div>
+                            <a href="/files/download/<%- id %>"><div class="filediv p-2 m-2 text-center " >F</div></a>
+                            <p class="text-center"><%= Files.namesFiles[i] %> </p>
+                        </div> 
+                    <% }); %>
+                <% } %>
+                <% if(typeof Imgs != 'undefined' ) { %>
+                    <% Imgs.idsImgs.forEach(function (id,i) { %>
+
+                        <div>
+                            <div id="imgdiv" class="m-2 ">
+                                <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
+                            </div>
+                            <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
+                        </div>
+                    <% }); %>
+                <% } %>
+            
+        </div>
+    </div>
+    <div class="d-inline-flex m-5">
+        <div class="files_category">
+            <h2>Exercices</h2>
+        </div>
+    
+        <div class="d-flex  flex-lg-row flex-wrap " >
+            
+                <% if(typeof Files != 'undefined' ) { %>
+                    <% Files.idsFiles.forEach(function (id,i) { %>
+                        <div>
+                            <a href="/files/download/<%- id %>"><div class="filediv p-2 m-2 text-center " >F</div></a>
+                            <p class="text-center"><%= Files.namesFiles[i] %> </p>
+                        </div> 
+                    <% }); %>
+                <% } %>
+                <% if(typeof Imgs != 'undefined' ) { %>
+                    <% Imgs.idsImgs.forEach(function (id,i) { %>
+
+                        <div>
+                            <div id="imgdiv" class="m-2 ">
+                                <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
+                            </div>
+                            <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
+                        </div>
+                    <% }); %>
+                <% } %>
+            
+        </div>
+    </div>
+    <div class="d-inline-flex m-5">
+        <div class="files_category">
+            <h2>Autres</h2>
+        </div>
+    
+        <div class="d-flex  flex-lg-row flex-wrap " >
+            
+                <% if(typeof Files != 'undefined' ) { %>
+                    <% Files.idsFiles.forEach(function (id,i) { %>
+                        <div>
+                            <a href="/files/download/<%- id %>"><div class="filediv p-2 m-2 text-center " >F</div></a>
+                            <p class="text-center"><%= Files.namesFiles[i] %> </p>
+                        </div> 
+                    <% }); %>
+                <% } %>
+                <% if(typeof Imgs != 'undefined' ) { %>
+                    <% Imgs.idsImgs.forEach(function (id,i) { %>
+
+                        <div>
+                            <div id="imgdiv" class="m-2 ">
+                                <a href="/files/download/<%- id %>"><img   src="<%= typeof Imgs.pathsImgs[i] != 'undefined' ? Imgs.pathsImgs[i] : '' %>"  class="img-fluid fileimg " alt="<%= Imgs.namesImgs[i] %>"></a>
+                            </div>
+                            <p class="text-center align-bottom"><%= Imgs.namesImgs[i] %> </p>
+                        </div>
+                    <% }); %>
+                <% } %>
+            
+        </div>
     </div>
 </section>

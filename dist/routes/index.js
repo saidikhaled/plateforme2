@@ -11,13 +11,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 // routes/index.js
 var router = _express["default"].Router();
+
+var _require = require('../../config/auth'),
+    ensureAuthenticated = _require.ensureAuthenticated;
 /* GET home page. */
 
 
 router.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'Express'
+    layout: 'layouts/layout'
   });
+});
+router.get('/home', ensureAuthenticated, function (req, res, next) {
+  res.render('home');
 });
 var _default = router;
 exports["default"] = _default;

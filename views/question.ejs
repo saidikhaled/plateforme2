@@ -15,14 +15,14 @@
         </div>
     </div>
     <div id="comments">
-    <% if(commentResults.length > 0) {%>
-        <% commentResults.forEach(function (result,i) { %>
+    <% if(comments.length > 0) {%>
+        <% comments.forEach(function (result,i) { %>
         <div id="user_comment">
             <div id="comment_username">
-                <h4 >user name <%= commentUser[i] %></h4>
+                <h4 ><%- commentUser[i] %></h4>
             </div>   
             <div id="show_comments" >
-                <p><%- result.comment %></p>
+                <p><%- result %></p>
             </div>
         </div>
         <% }); %>
